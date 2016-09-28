@@ -45,6 +45,8 @@ exports.getRandomUnreviewedSession = function(req, res) {
 }
 
 exports.setReviewedSession = function(req, res) {
+  console.log('req', req);
+  console.log('user', req.user);
   var userReviewedSessions = reviewedSessionsForUser(req.user.id);
   
   var found = userReviewedSessions.find(revSess => revSess.id === parseInt(req.params.sessionId))

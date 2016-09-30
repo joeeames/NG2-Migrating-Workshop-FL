@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js -w ./server",
+    "tsc": "tsc -w",
     "test": "karma start"
   },
   "keywords": [],
@@ -23,5 +24,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "typescript": "2.0.3",
+    "typings": "0.8.1"
   }
 }

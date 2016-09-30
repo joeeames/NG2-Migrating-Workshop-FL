@@ -9,4 +9,7 @@ app.run(function ($rootScope, $location) {
         }
     });
 });
+angular.element(document).ready(function () {
+    angular.bootstrap(document.body, ['app']);
+});
 //# sourceMappingURL=app.js.map

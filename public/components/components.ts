@@ -3,7 +3,6 @@ angular.module('app').directive('detailPanel', function() {
     restrict: 'E',
     transclude: true,
     templateUrl: '/components/detailPanel.html',
-    replace: true,
     scope: {
       title: '@',
       initialCollapsed: '@collapsed'

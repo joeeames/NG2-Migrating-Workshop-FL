@@ -1,28 +1,28 @@
-angular.module('app').factory('currentIdentity', function($http, $q) {
-  return {
-    currentUser: null,
+angular.module('app').service ('currentIdentity', class CurrentIdentity {
+    currentUser: any = null;
+
+  constructor(private $http, private $q) {
+  }
+  
+  setUser(user) {
+    this.currentUser = user;
+  }
+  clearUser() {
+    this.currentUser = null;
+  }
+  authenticated() {
+    return !!this.currentUser;
+  }
+  updateUser(newUserObj) {
+    var dfd = this.$q.defer();
     
-    setUser: function(user) {
-      this.currentUser = user;
-    },
-    clearUser: function() {
-      this.currentUser = null;
-    },
-    authenticated: function() {
-      return !!this.currentUser;
-    },
-    updateUser: function(newUserObj) {
-      var dfd = $q.defer();
-      
-      
-      $http.put('/api/users/' + this.currentUser.id, newUserObj).then(function(response) {
-        this.currentUser.firstName = newUserObj.firstName;
-        this.currentUser.lastName = newUserObj.lastName;
-        dfd.resolve();
-      }.bind(this), function(response) {
-        dfd.reject("Error Logging Out");
-      })
-      return dfd.promise;
-    }
+    this.$http.put('/api/users/' + this.currentUser.id, newUserObj).then(function(response) {
+      this.currentUser.firstName = newUserObj.firstName;
+      this.currentUser.lastName = newUserObj.lastName;
+      dfd.resolve();
+    }.bind(this), function(response) {
+      dfd.reject("Error Logging Out");
+    })
+    return dfd.promise;
   }
 });
